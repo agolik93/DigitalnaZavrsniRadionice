@@ -1,5 +1,9 @@
 const Predavaci = () => {
-  return <div>Predavaci</div>;
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 };
 
 export default Predavaci;

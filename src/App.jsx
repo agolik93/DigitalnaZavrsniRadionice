@@ -8,18 +8,6 @@ import Predavaci from "./pages/Predavaci.jsx";
 import Administracija from "./pages/Administracija.jsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const Layout = ({ children }) => (
-  <div className="flex flex-col h-dvh">
-    <div className="h-1/6">
-      <Navigacija />
-    </div>
-    <div className="h-4/6">{children}</div>
-    <div className="h-1/6">
-      <Footer />
-    </div>
-  </div>
-);
-
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -27,38 +15,41 @@ const App = () => {
     {
       path: "/",
       element: (
-        <Layout>
-          <Pocetna />
-        </Layout>
+        <div>
+          <Navigacija /> <Pocetna />
+          <Footer />
+        </div>
       ),
-      errorElement: (
-        <Layout>
-          <NotFound />
-        </Layout>
-      ),
+      errorElement: <NotFound />,
     },
     {
       path: "/radionice",
       element: (
-        <Layout>
+        <div>
+          <Navigacija />
           <Radionice />
-        </Layout>
+          <Footer />
+        </div>
       ),
     },
     {
       path: "/predavaci",
       element: (
-        <Layout>
+        <div>
+          <Navigacija />
           <Predavaci />
-        </Layout>
+          <Footer />
+        </div>
       ),
     },
     {
       path: "/administracija",
       element: (
-        <Layout>
+        <div>
+          <Navigacija />
           <Administracija />
-        </Layout>
+          <Footer />
+        </div>
       ),
     },
   ]);
