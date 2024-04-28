@@ -20,8 +20,24 @@ export const useStore = create((set) => ({
   setPrijavaFormOpen: () => {
     set({ prijavaForm: true });
   },
-  setPrijavaFormClosed: () => {
-    set({ prijavaForm: false });
+
+  dodajRadionicuForm: false,
+  setDodajRadionicuFormOpen: () => {
+    set({ dodajRadionicuForm: true });
+  },
+
+  urediRadionicuForm: false,
+  setUrediRadionicuForm: () => {
+    set({ urediRadionicuForm: true });
+  },
+
+  setAllFormsClose: () => {
+    set({
+      prijavaForm: false,
+      dodajRadionicuForm: false,
+      urediRadionicuForm: false,
+      izabraniForm: "",
+    });
   },
 
   izabraniForm: "",

@@ -1,32 +1,10 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import Filteri from "../components/Filteri";
 import Radionica from "../components/Radionica";
 import { useStore } from "../store";
 import { useEffect, useState } from "react";
-
 import ModalDodajRadionicu from "../components/ModalDodajRadionicu";
 import ModalPrijava from "../components/ModalPrijava";
-
-async function fetchData() {
-  try {
-    const [radioniceResponse, temeResponse, tezineResponse] = await Promise.all(
-      [
-        axios.get("http://localhost:3000/radionice"),
-        axios.get("http://localhost:3000/teme"),
-        axios.get("http://localhost:3000/tezine"),
-      ]
-    );
-
-    const radioniceData = radioniceResponse.data;
-    const temeData = temeResponse.data;
-    const tezineData = tezineResponse.data;
-
-    return { radioniceData, temeData, tezineData };
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
 
 const Radionice = () => {
   const admin = useStore((state) => state.adminState);
@@ -35,7 +13,12 @@ const Radionice = () => {
   const temaFilter = useStore((state) => state.temaFilter);
   const setTemaFilter = useStore((state) => state.setTemaFilter);
   const [loadingFilter, setLoadingFilter] = useState(false);
-  const isFormOpen = useStore((state) => state.prijavaForm);
+  const prijavaForm = useStore((state) => state.prijavaForm);
+  const dodajRadionicuForm = useStore((state) => state.dodajRadionicuForm);
+  const urediRadionicuForm = useStore((state) => state.urediRadionicuForm);
+  const setDodajRadionicuFormOpen = useStore(
+    (state) => state.setDodajRadionicuFormOpen
+  );
 
   const handleFilterChange = () => {
     if (tezinaFilter === null && temaFilter === null) {
@@ -51,7 +34,8 @@ const Radionice = () => {
     handleFilterChange();
   }, [tezinaFilter, temaFilter]);
 
-  const { data, isLoading, error } = useQuery("allData", fetchData);
+  const { data, isLoading, error } = useQuery("allData");
+
   if (isLoading) return <div>Loading...</div>;
 
   if (error) return <div>Error: {error.message}</div>;
@@ -63,7 +47,9 @@ const Radionice = () => {
     setTezinaFilter(null);
   }
 
-  function handleDodajRadionicu() {}
+  function handleDodajRadionicu() {
+    setDodajRadionicuFormOpen(true);
+  }
 
   return (
     <div className="flex flex-col">
@@ -119,8 +105,9 @@ const Radionice = () => {
           )}
         </div>
       </div>
-      {isFormOpen && <ModalPrijava />}
-      <ModalDodajRadionicu />
+      {prijavaForm && <ModalPrijava />}
+      {dodajRadionicuForm && <ModalDodajRadionicu />}
+      {urediRadionicuForm && <ModalDodajRadionicu />}
     </div>
   );
 };

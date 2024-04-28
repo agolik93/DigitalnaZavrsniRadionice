@@ -1,59 +1,64 @@
 {
   "radionice": [
     {
-      "id": "radionica_1",
-      "ime": "Radionica 1",
-      "datum": "01.01.2025",
-      "predavac": "predavac_1",
-      "opis": "Kratki opis radionice 1",
-      "broj_prijava": 0,
-      "tezina": "Senior",
-      "tema": "Next.js",
-      "polaznici": [
-        {
-          "ime_prezime": "sadsa",
-          "email": "augustin.aljinovic@gmail.com",
-          "razlog": "dsads"
-        }
-      ]
-    },
-    {
-      "id": "radionica_2",
-      "ime": "Radionica 1",
-      "datum": "01.01.2025",
-      "predavac": "predavac_1",
-      "opis": "Kratki opis radionice 1",
-      "broj_prijava": 0,
-      "tezina": "Senior",
-      "tema": "Next.js",
-      "polaznici": [
-        {
-          "ime_prezime": "sadsa",
-          "email": "augustin.aljinovic@gmail.com",
-          "razlog": "dsads"
-        }
-      ]
-    },
-    {
+      "ime": "Radionica izmjena ",
+      "datum": "2024-04-14",
+      "predavac": "ago agic",
+      "opis": "dsadsa",
+      "tezina": "Junior",
+      "tema": "React",
       "id": "1217",
-      "ime": "Test",
-      "datum": "2024-04-10",
-      "predavac": "test",
-      "opis": "test",
-      "tezina": "test",
-      "tema": "dsadsadsadsadsadasdas",
       "polaznici": [
         {
-          "ime_prezime": "sadsa",
-          "email": "addict4eva@gmail.com",
-          "razlog": "da proban"
+          "ime_prezime": "dsad",
+          "email": "augustin.aljinovic@gmail.com",
+          "razlog": "dsadsadas"
         },
         {
-          "ime_prezime": "Augustin Aljinovic",
+          "ime_prezime": "sadsa",
           "email": "augustin.aljinovic@gmail.com",
-          "razlog": "probas2"
+          "razlog": "dsadsad"
+        },
+        {
+          "ime_prezime": "sadsa",
+          "email": "augustin.aljinovic@gmail.com",
+          "razlog": "sdasdasd"
         }
       ]
+    },
+    {
+      "id": "262f",
+      "ime": "Test",
+      "datum": "2024-04-16",
+      "predavac": "dsadsa",
+      "opis": "sjahdb,jshabvdhbvaslhdvblas",
+      "tezina": "Mid",
+      "tema": "Python"
+    },
+    {
+      "id": "0d86",
+      "ime": "dsad",
+      "datum": "2024-04-05",
+      "predavac": "silva",
+      "opis": "nesto des",
+      "tezina": "Senior",
+      "tema": "React",
+      "polaznici": [
+        {
+          "ime_prezime": "sadsa",
+          "email": "augustin.aljinovic@gmail.com",
+          "razlog": "dsadsa"
+        }
+      ]
+    },
+    {
+      "id": "baf9",
+      "ime": "dasdsa",
+      "datum": "2024-04-09",
+      "predavac": "dsadsa",
+      "opis": "dsadsad",
+      "tezina": "Senior",
+      "tema": "Next.js"
     }
   ],
   "predavaci": [
@@ -62,16 +67,21 @@
       "ime": "Predavac 1",
       "biografija": "Biografija predavaca 1",
       "organizacija": "organizacija_1"
-    }
-  ],
-  "organizacije": [
+    },
     {
-      "id": "organizacija_1",
-      "ime": "Organizacija 1",
-      "opis": "Opis organizacije 1",
-      "radionice": ["radionica_1"]
+      "id": "predavac_2",
+      "ime": "Predavac 1",
+      "biografija": "Biografija predavaca 1",
+      "organizacija": "organizacija_1"
+    },
+    {
+      "id": "predavac_3",
+      "ime": "Predavac 1",
+      "biografija": "Biografija predavaca 1",
+      "organizacija": "organizacija_1"
     }
   ],
+
   "tezine": [
     {
       "id": "junior",

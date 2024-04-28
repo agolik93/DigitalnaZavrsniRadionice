@@ -6,11 +6,33 @@ import Pocetna from "./pages/Pocetna.jsx";
 import Radionice from "./pages/Radionice.jsx";
 import Predavaci from "./pages/Predavaci.jsx";
 import Administracija from "./pages/Administracija.jsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import axios from "axios";
+import { useQuery } from "react-query";
 
-const queryClient = new QueryClient();
+async function fetchData() {
+  try {
+    const [radioniceResponse, temeResponse, tezineResponse, predavaciResponse] =
+      await Promise.all([
+        axios.get("http://localhost:3000/radionice"),
+        axios.get("http://localhost:3000/teme"),
+        axios.get("http://localhost:3000/tezine"),
+        axios.get("http://localhost:3000/predavaci"),
+      ]);
+
+    const radioniceData = radioniceResponse.data;
+    const temeData = temeResponse.data;
+    const predavaciData = predavaciResponse.data;
+    const tezineData = tezineResponse.data;
+
+    return { radioniceData, temeData, tezineData, predavaciData };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
 
 const App = () => {
+  useQuery("allData", fetchData);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -54,11 +76,7 @@ const App = () => {
     },
   ]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

@@ -5,10 +5,18 @@ const Radionica = ({ e }) => {
 
   const prijavaForm = useStore((state) => state.setPrijavaFormOpen);
   const izabraniForm = useStore((state) => state.setIzabraniForm);
+  const setUrediRadionicuForm = useStore(
+    (state) => state.setUrediRadionicuForm
+  );
 
   function handleClick() {
     prijavaForm();
     izabraniForm(e);
+  }
+
+  function handleUredi() {
+    izabraniForm(e);
+    setUrediRadionicuForm(true);
   }
 
   return (
@@ -25,7 +33,7 @@ const Radionica = ({ e }) => {
       </div>
       <div>
         <button onClick={handleClick}>Prijavi se</button>
-        {admin && <button>Uredi</button>}
+        {admin && <button onClick={handleUredi}>Uredi</button>}
       </div>
     </div>
   );
