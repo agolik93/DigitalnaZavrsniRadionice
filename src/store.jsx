@@ -44,4 +44,9 @@ export const useStore = create((set) => ({
   setIzabraniForm: (e) => {
     set({ izabraniForm: e });
   },
+
+  odabraniPredavac: "",
+  setOdabraniPredavac: (e) => {
+    set({ odabraniPredavac: e });
+  },
 }));

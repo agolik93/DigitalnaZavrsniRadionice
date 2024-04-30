@@ -19,6 +19,7 @@ const Radionice = () => {
   const setDodajRadionicuFormOpen = useStore(
     (state) => state.setDodajRadionicuFormOpen
   );
+  const odabraniPredavac = useStore((e) => e.odabraniPredavac);
 
   const handleFilterChange = () => {
     if (tezinaFilter === null && temaFilter === null) {
@@ -97,6 +98,9 @@ const Radionice = () => {
                 )
                 .filter((e) =>
                   temaFilter !== null ? e.tema === temaFilter : true
+                )
+                .filter((e) =>
+                  odabraniPredavac !== "" ? e.predavac === odabraniPredavac : e
                 )
                 .map((e) => (
                   <Radionica key={e.id} e={e} />

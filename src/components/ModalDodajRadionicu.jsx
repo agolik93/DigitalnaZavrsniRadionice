@@ -17,7 +17,7 @@ const ModalDodajRadionicu = () => {
 
   const { data, refetch } = useQuery("allData");
 
-  const { radioniceData, temeData, tezineData } = data;
+  const { radioniceData, temeData, tezineData, predavaciData } = data;
 
   const izabranaData = radioniceData.find(
     (item) => item.id === izabraniForm.id
@@ -57,12 +57,19 @@ const ModalDodajRadionicu = () => {
             defaultValue={urediRadionicuForm ? izabranaData.datum : ""}
           />
           {errors.datum && <span>This field is required</span>}
-          <input
+          <select
             {...register("predavac", { required: true })}
             placeholder="Ime predavaca"
             defaultValue={urediRadionicuForm ? izabranaData.predavac : ""}
-          />
+          >
+            {predavaciData?.map((e) => (
+              <option key={e.id} value={e.ime}>
+                {e.ime}
+              </option>
+            ))}
+          </select>
           {errors.predavac && <span>This field is required</span>}
+
           <textarea
             rows="4"
             cols="50"

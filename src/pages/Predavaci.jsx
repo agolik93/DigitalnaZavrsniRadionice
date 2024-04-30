@@ -1,11 +1,12 @@
 import { useQuery } from "react-query";
 import Filteri from "../components/Filteri";
 import { useStore } from "../store";
+import Predavac from "../components/Predavac";
 
 const Predavaci = () => {
-  const { data, isLoading } = useQuery("allData");
-  console.log(data);
+  const { data } = useQuery("allData");
   const { temeData, predavaciData } = data;
+
   const admin = useStore((state) => state.adminState);
 
   return (
@@ -19,13 +20,17 @@ const Predavaci = () => {
         <div className="w-1/5">
           <div className="border-2 m-10">
             <h2>Teme:</h2>
-            {/*  {temeData?.map((e) => (
+            {temeData?.map((e) => (
               <Filteri key={e.id} e={e} setFilter="" selectedFilter="" />
-            ))} */}
+            ))}
           </div>
         </div>
 
-        <div className="w-4/5 border-2"></div>
+        <div className="w-4/5 border-2">
+          {predavaciData.map((e, i) => (
+            <Predavac key={e.id} predavac={e} i={i} />
+          ))}
+        </div>
       </div>
     </div>
   );

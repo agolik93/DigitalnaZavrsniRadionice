@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
 import Navigacija from "./components/Navigacija.jsx";
 import Footer from "./components/Footer.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -8,75 +8,107 @@ import Predavaci from "./pages/Predavaci.jsx";
 import Administracija from "./pages/Administracija.jsx";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { useStore } from "./store.jsx";
 
 async function fetchData() {
-  try {
-    const [radioniceResponse, temeResponse, tezineResponse, predavaciResponse] =
-      await Promise.all([
-        axios.get("http://localhost:3000/radionice"),
-        axios.get("http://localhost:3000/teme"),
-        axios.get("http://localhost:3000/tezine"),
-        axios.get("http://localhost:3000/predavaci"),
-      ]);
+  const [radioniceResponse, temeResponse, tezineResponse, predavaciResponse] =
+    await Promise.all([
+      axios.get("http://localhost:3000/radionice"),
+      axios.get("http://localhost:3000/teme"),
+      axios.get("http://localhost:3000/tezine"),
+      axios.get("http://localhost:3000/predavaci"),
+    ]);
 
-    const radioniceData = radioniceResponse.data;
-    const temeData = temeResponse.data;
-    const predavaciData = predavaciResponse.data;
-    const tezineData = tezineResponse.data;
+  const radioniceData = radioniceResponse.data;
+  const temeData = temeResponse.data;
+  const predavaciData = predavaciResponse.data;
+  const tezineData = tezineResponse.data;
 
-    return { radioniceData, temeData, tezineData, predavaciData };
-  } catch (error) {
-    throw new Error(error.message);
-  }
+  return { radioniceData, temeData, tezineData, predavaciData };
 }
 
 const App = () => {
-  useQuery("allData", fetchData);
+  const { isLoading, isError } = useQuery("allData", fetchData);
+  const odabraniPredavac = useStore((state) => state.odabraniPredavac);
+  const setOdabraniPredavac = useStore((state) => state.setOdabraniPredavac);
+  const routePath = odabraniPredavac ? `/predavaci/${odabraniPredavac}` : "/";
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching data</div>;
+  }
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <div>
-          <Navigacija /> <Pocetna />
+        <>
+          <Navigacija />
+          <Pocetna />
           <Footer />
-        </div>
+        </>
       ),
-      errorElement: <NotFound />,
+      errorElement: (
+        <>
+          <Navigacija />
+          <NotFound />
+          <Footer />
+        </>
+      ),
     },
     {
       path: "/radionice",
       element: (
-        <div>
+        <>
           <Navigacija />
           <Radionice />
           <Footer />
-        </div>
+        </>
       ),
     },
     {
       path: "/predavaci",
       element: (
-        <div>
+        <>
           <Navigacija />
           <Predavaci />
           <Footer />
-        </div>
+        </>
       ),
     },
+
     {
       path: "/administracija",
       element: (
-        <div>
+        <>
           <Navigacija />
           <Administracija />
           <Footer />
-        </div>
+        </>
+      ),
+    },
+    {
+      path: routePath,
+      element: (
+        <>
+          <Link to="/predavaci" onClick={() => setOdabraniPredavac("")}>
+            {odabraniPredavac} Vrati se
+          </Link>
+          <Radionice />
+          <Footer />
+        </>
       ),
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 };
 
 export default App;
