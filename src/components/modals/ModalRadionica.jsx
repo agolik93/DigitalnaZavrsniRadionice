@@ -7,7 +7,8 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
   const { data: tezineData } = useTezine();
   const { data: predavaciData } = usePredavaci();
   const { data: radioniceData, refetch: refetchRadionice } = useRadionice();
-  const edit = selectedId !== "";
+
+  const edit = handleOpen && selectedId;
 
   const izabranaData = selectedId
     ? radioniceData.find((item) => item?.id === selectedId)
@@ -27,11 +28,12 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
       opis: izabranaData?.opis,
       tezina: izabranaData?.tezina,
       tema: izabranaData?.tema,
-      brojPrijava: izabranaData?.brojPrijava,
+      brojPrijava: 0,
     },
   });
 
   const onSubmit = async (data) => {
+    data.organizacije = selectedOrganizacije;
     if (edit) {
       await axios.patch(`http://localhost:3000/radionice/${selectedId}`, data);
     } else {
@@ -40,6 +42,7 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
     refetchRadionice();
     reset();
   };
+
   const selectedPredavac = watch("predavac");
 
   const selectedOrganizacije = selectedPredavac
@@ -54,7 +57,7 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
           {edit && <h2>Uredi radionicu {`${izabranaData?.ime}`} </h2>}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="border-2 flex flex-col"
+            className="border-2 flex flex-col gap-3"
           >
             <input
               {...register("ime", { required: true })}
@@ -66,7 +69,9 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
             {errors.datum && <span>Obavezno polje</span>}
 
             <select {...register("predavac", { required: true })}>
-              <option value="">Odaberi predavaca</option>
+              <option value="" hidden>
+                Odaberi predavaca
+              </option>
               {predavaciData?.map((e) => (
                 <option key={e.id} value={e.ime}>
                   {e.ime}
@@ -75,13 +80,7 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
             </select>
             {errors.predavac && <span>Obavezno polje</span>}
 
-            <input
-              readOnly
-              {...register("organizacije", { required: true })}
-              defaultValue={selectedOrganizacije}
-            />
-
-            {errors.organizacije && <span>Obavezno polje</span>}
+            <p>{selectedOrganizacije}</p>
 
             <textarea
               rows="4"
@@ -93,7 +92,9 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
             {errors.opis && <span>Obavezno polje</span>}
 
             <select {...register("tezina", { required: true })}>
-              <option value="">Odaberi tezinu</option>
+              <option value="" hidden>
+                Odaberi tezinu
+              </option>
               {tezineData?.map((e) => (
                 <option key={e.id} value={e.ime}>
                   {e.ime}
@@ -102,8 +103,13 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
             </select>
             {errors.tezina && <span>Obavezno polje</span>}
 
-            <select {...register("tema", { required: true })}>
-              <option value="">Odaberi temu</option>
+            <select
+              {...register("tema", { required: true })}
+              disabled={watch("predavac") === ""}
+            >
+              <option value="" hidden>
+                Odaberi temu
+              </option>
               {predavaciData
                 ?.filter((predavac) => predavac.ime === watch("predavac"))
                 .map((predavac) =>
@@ -116,10 +122,6 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
             </select>
             {errors.tema && <span>Obavezno polje</span>}
 
-            <input
-              type={edit ? "number" : "hidden"}
-              {...register("brojPrijava", { required: true, min: 0 })}
-            />
             <input
               type="submit"
               value={edit ? "Izmjeni radionicu" : "Dodaj radionicu"}

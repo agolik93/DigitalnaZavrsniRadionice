@@ -1,14 +1,36 @@
 {
   "radionice": [
     {
-      "id": "65d9",
-      "ime": "Ante Antic",
-      "datum": "2024-05-12",
+      "id": "4ae2",
+      "ime": "Radionica Gotovac",
+      "datum": "2024-05-05",
       "predavac": "Petra",
-      "opis": "dsadsa",
-      "tezina": "Junior",
+      "opis": "jdyfsajdfgh",
+      "tezina": "Mid",
       "tema": "Next.js",
-      "brojPrijava": 0,
+      "brojPrijava": 2,
+      "organizacije": "Microsoft"
+    },
+    {
+      "id": "9c92",
+      "ime": "dsads",
+      "datum": "2024-05-17",
+      "predavac": "Josip",
+      "opis": "dsadasda",
+      "tezina": "Mid",
+      "tema": "Python",
+      "brojPrijava": 1,
+      "organizacije": "DigitalnaDalmacija"
+    },
+    {
+      "id": "804a",
+      "ime": "dsads",
+      "datum": "2024-05-14",
+      "predavac": "Petra",
+      "opis": "dsadsad",
+      "tezina": "Mid",
+      "tema": "Next.js",
+      "brojPrijava": 2,
       "organizacije": "Microsoft"
     }
   ],
