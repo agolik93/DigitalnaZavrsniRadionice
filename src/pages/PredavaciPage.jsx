@@ -24,7 +24,7 @@ const PredavaciPage = () => {
           </button>
         </div>
       )}
-      <div className="flex">
+      <div className="flex ">
         <Filtering
           data={predavaciData}
           setId={setId}

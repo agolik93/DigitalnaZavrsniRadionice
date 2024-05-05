@@ -36,11 +36,13 @@ const Filtering = ({
     <>
       <div className="w-1/5">
         {izabraniId !== undefined && (
-          <h2>Radionice predavaca {`${izabraniId}`}</h2>
+          <h2 className="text-xl font-bold mb-4">
+            Radionice predavača {`${izabraniId}`}
+          </h2>
         )}
         {data1 && (
-          <div className="m-10 border-4  rounded-xl text-center bg-blue-300">
-            <h2>{data1Naziv}</h2>
+          <div className="m-4 p-4 border-4 rounded-lg bg-blue-200">
+            <h2 className="text-lg font-bold mb-2">{data1Naziv}</h2>
             {data1?.map((e) => (
               <Filteri
                 key={e.id}
@@ -53,8 +55,8 @@ const Filtering = ({
         )}
 
         {data2?.length > 0 && (
-          <div className="m-10 border-4  rounded-xl text-center bg-blue-300">
-            <h2>{data2Naziv}</h2>
+          <div className="m-4 p-4 border-4 rounded-lg bg-blue-200">
+            <h2 className="text-lg font-bold mb-2">{data2Naziv}</h2>
             {data2.map((e) => (
               <Filteri
                 key={e.id}
@@ -66,9 +68,9 @@ const Filtering = ({
           </div>
         )}
       </div>
-      <div className="w-4/5 border-4 bg-blue-300">
+      <div className="w-4/5 border-4 bg-blue-200 flex p-10 m-4">
         {loadingFilter ? (
-          <div>Loading...</div>
+          <div className="p-4">Loading...</div>
         ) : (
           <>
             {data

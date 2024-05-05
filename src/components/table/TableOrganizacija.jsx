@@ -6,7 +6,7 @@ const TableOrganizacija = ({ setId, setHandleOpen, setDeleteM, data }) => {
   return (
     <table className="table-auto w-full">
       <thead>
-        <tr className="bg-gray-200">
+        <tr className="bg-blue-200">
           <th className="px-4 py-2">Organizacija</th>
           <th className="px-4 py-2">Opis</th>
           <th className="px-4 py-2">Broj Radionica</th>
@@ -15,7 +15,7 @@ const TableOrganizacija = ({ setId, setHandleOpen, setDeleteM, data }) => {
       </thead>
       <tbody>
         {data?.map((e, i) => (
-          <tr key={i} className={i % 2 === 0 ? "bg-gray-100" : "bg-white"}>
+          <tr key={i} className={i % 2 === 0 ? "bg-blue-100" : "bg-white"}>
             <td className="border px-4 py-2">{e.ime}</td>
             <td className="border px-4 py-2">{e.opis}</td>
 

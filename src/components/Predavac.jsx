@@ -16,20 +16,39 @@ const Predavac = ({ e, i, setUrediModal, setId }) => {
 
   return (
     <>
-      <div className="border-2">
-        <img src={data && data[i]?.picture.large} alt="" />
-        <h2>{e?.ime}</h2>
-        <div>{e?.biografija}</div>
-        <div>{e?.organizacije}</div>
-        <ul>
-          {e?.tema?.map((e) => (
-            <li key={e.value}> {e.label}</li>
-          ))}
-        </ul>
+      <div className="border-4 p-10 mx-5 flex  flex-col h-full">
+        <div className="flex-grow">
+          <img
+            className="w-32 h-32 object-cover rounded-full mb-2"
+            src={data && data[i]?.picture.large}
+            alt=""
+          />
+          <h2 className="text-lg font-bold mb-1">Ime: {e?.ime}</h2>
+          <div className="mb-2">O predavacu:{e?.biografija}</div>
+          <div className="mb-2">Organizacija:{e?.organizacije}</div>
+          <ul className="mb-2">
+            {e?.tema?.map((e) => (
+              <li key={e.value}>{e.label}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <Link
+            to={`/predavaci/${e?.ime}`}
+            className="text-blue-500 hover:underline"
+          >
+            Pregledaj radionice
+          </Link>
+          {admin && (
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
+              onClick={handleClick}
+            >
+              Uredi
+            </button>
+          )}
+        </div>
       </div>
-      <Link to={`/predavaci/${e?.ime}`}>Pregledaj radionice</Link>
-
-      {admin && <button onClick={handleClick}>Uredi</button>}
     </>
   );
 };

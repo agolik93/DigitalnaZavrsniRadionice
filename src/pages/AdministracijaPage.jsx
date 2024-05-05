@@ -62,7 +62,9 @@ const AdministracijaPage = () => {
           +Dodaj
         </button>
       </ul>
-      <Outlet />
+      <div className="min-w-full p-10">
+        <Outlet />
+      </div>
     </div>
   );
 };

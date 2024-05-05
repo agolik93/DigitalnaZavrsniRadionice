@@ -6,7 +6,7 @@ const TableTema = ({ data, setId, setDeleteM }) => {
   return (
     <table className="table-auto w-full">
       <thead>
-        <tr className="bg-gray-200">
+        <tr className="bg-blue-200">
           <th className="px-4 py-2">Ime</th>
           <th className="px-4 py-2">Ukupan broj prijava</th>
           <th className="px-4 py-2">Akcije</th>
@@ -14,7 +14,7 @@ const TableTema = ({ data, setId, setDeleteM }) => {
       </thead>
       <tbody>
         {data?.map((e, i) => (
-          <tr key={i} className={i % 2 === 0 ? "bg-gray-100" : "bg-white"}>
+          <tr key={i} className={i % 2 === 0 ? "bg-blue-100" : "bg-white"}>
             <td className="border px-4 py-2">{e.ime}</td>
             <td className="border px-4 py-2 flex">
               {radioniceData
