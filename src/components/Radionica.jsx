@@ -1,22 +1,16 @@
 import { useStore } from "../store";
 
-const Radionica = ({ e }) => {
+const Radionica = ({ e, setPrijavaModal, setUrediModal, setId }) => {
   const admin = useStore((state) => state.adminState);
 
-  const prijavaForm = useStore((state) => state.setPrijavaFormOpen);
-  const izabraniForm = useStore((state) => state.setIzabraniForm);
-  const setUrediRadionicuForm = useStore(
-    (state) => state.setUrediRadionicuForm
-  );
-
-  function handleClick() {
-    prijavaForm();
-    izabraniForm(e);
+  function handlePrijava() {
+    setId(e.id);
+    setPrijavaModal(true);
   }
 
   function handleUredi() {
-    izabraniForm(e);
-    setUrediRadionicuForm(true);
+    setId(e.id);
+    setUrediModal(true);
   }
 
   return (
@@ -24,15 +18,15 @@ const Radionica = ({ e }) => {
       <div className="flex ">
         <div className="w-20 h-20 border-2">slika</div>
         <div>
-          <h2>Ime radionice:{e.ime}</h2>
-          <div>Opis:{e.opis}</div>
-          <div>Predavaci:{e.predavac}</div>
-          <div>Tezina:{e.tezina}</div>
-          <div>Tema:{e.tema}</div>
+          <h2>Ime radionice:{e?.ime}</h2>
+          <div>Opis:{e?.opis}</div>
+          <div>Predavaci:{e?.predavac}</div>
+          <div>Tezina:{e?.tezina}</div>
+          <div>Tema:{e?.tema}</div>
         </div>
       </div>
       <div>
-        <button onClick={handleClick}>Prijavi se</button>
+        <button onClick={handlePrijava}>Prijavi se</button>
         {admin && <button onClick={handleUredi}>Uredi</button>}
       </div>
     </div>

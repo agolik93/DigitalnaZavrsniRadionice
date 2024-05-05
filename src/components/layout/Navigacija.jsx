@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { useStore } from "../store";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useStore } from "../../store";
+import { useEffect } from "react";
 
 const Navigacija = () => {
   const adminState = useStore((state) => state.adminState);
@@ -8,22 +9,53 @@ const Navigacija = () => {
   const handleAdminToggle = () => {
     adminToggle();
   };
+  const navigate = useNavigate(); // Get reference to navigate function
+
+  const handleNonAdminRedirect = () => {
+    if (!adminState) {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    handleNonAdminRedirect();
+  }, [adminState]);
 
   return (
     <div className="h-full flex justify-between items-center">
       <ul className="flex justify-evenly w-4/5">
         <li>
-          <Link to="/">Pocetna</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
+          >
+            Pocetna
+          </NavLink>
         </li>
         <li>
-          <Link to="/radionice">Radionice</Link>
+          <NavLink
+            to="/radionice"
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
+          >
+            Radionice
+          </NavLink>
         </li>
         <li>
-          <Link to="/predavaci">Predavaci</Link>
+          <NavLink
+            to="/predavaci"
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
+          >
+            Predavaci
+          </NavLink>
         </li>
         {adminState && (
           <li>
-            <Link to="/administracija">Administracija</Link>
+            <NavLink
+              to="/administracija"
+              className={({ isActive }) => (isActive ? "text-red-500" : "")}
+            >
+              Administracija
+            </NavLink>
           </li>
         )}
       </ul>

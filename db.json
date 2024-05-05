@@ -1,67 +1,61 @@
 {
   "radionice": [
     {
-      "id": "2bfd",
-      "ime": "prva",
-      "datum": "2024-04-01",
-      "predavac": "Predavac 1",
-      "opis": "sdasdasd",
-      "tezina": "Mid",
-      "tema": "React",
-      "polaznici": [
-        {
-          "ime_prezime": "dsadsad",
-          "email": "addict4eva@gmail.com",
-          "razlog": "sdasdas"
-        }
-      ]
-    },
-    {
-      "id": "70c2",
-      "ime": "druga",
-      "datum": "2024-04-09",
-      "predavac": "Predavac 2",
+      "id": "65d9",
+      "ime": "Ante Antic",
+      "datum": "2024-05-12",
+      "predavac": "Petra",
       "opis": "dsadsa",
       "tezina": "Junior",
-      "tema": "React"
-    },
-    {
-      "id": "4629",
-      "ime": "dsadas",
-      "datum": "2024-04-19",
-      "predavac": "Predavac 1",
-      "opis": "dsadasd",
-      "tezina": "Junior",
-      "tema": "React"
-    },
-    {
-      "id": "89f8",
-      "ime": "dsadsd",
-      "datum": "2024-04-16",
-      "predavac": "Predavac 1",
-      "opis": "dsadsa",
-      "tezina": "Mid",
-      "tema": "Python"
+      "tema": "Next.js",
+      "brojPrijava": 0,
+      "organizacije": "Microsoft"
     }
   ],
   "predavaci": [
     {
-      "id": "predavac_1",
-      "ime": "Predavac 1",
-      "biografija": "Biografija predavaca 1",
-      "organizacija": "organizacija_1"
+      "id": "43ce",
+      "ime": "Josip",
+      "biografija": "Josip ka Josip",
+      "organizacije": "DigitalnaDalmacija",
+      "tema": [
+        {
+          "value": "5423",
+          "label": "Python"
+        },
+        {
+          "value": "4da0",
+          "label": "React"
+        },
+        {
+          "value": "1234",
+          "label": "Express"
+        }
+      ]
     },
     {
-      "id": "predavac_2",
-      "ime": "Predavac 2",
-      "biografija": "Biografija predavaca 1",
-      "organizacija": "organizacija_1"
+      "id": "d3d7",
+      "ime": "Ante",
+      "biografija": "A sta rec o Anti",
+      "organizacije": "Microsoft",
+      "tema": [
+        {
+          "value": "ed5c",
+          "label": "C#"
+        }
+      ]
     },
     {
-      "id": "predavac_3",
-      "ime": "Predavac 3",
-      "biografija": "Biografija predavaca 1",
-      "organizacija": "organizacija_1"
+      "id": "d62e",
+      "ime": "Petra",
+      "biografija": "Boze Petra",
+      "organizacije": "Microsoft",
+      "tema": [
+        {
+          "value": "8639",
+          "label": "Next.js"
+        }
+      ]
     }
   ],
   "tezine": [
@@ -80,20 +74,41 @@
   ],
   "teme": [
     {
-      "id": "react",
-      "ime": "React"
-    },
-    {
-      "id": "express",
+      "id": "1234",
       "ime": "Express"
     },
     {
-      "id": "next_js",
+      "id": "8639",
       "ime": "Next.js"
     },
     {
-      "id": "python",
+      "id": "5423",
       "ime": "Python"
+    },
+    {
+      "id": "4da0",
+      "ime": "React"
+    },
+    {
+      "id": "ed5c",
+      "ime": "C#"
+    }
+  ],
+  "organizacije": [
+    {
+      "id": "4283",
+      "ime": "Microsoft",
+      "opis": "Nesto o microsoftu"
+    },
+    {
+      "id": "8f5e",
+      "ime": "Google",
+      "opis": "Nesto o Googleu\n\n"
+    },
+    {
+      "id": "8a97",
+      "ime": "DigitalnaDalmacija",
+      "opis": "Nesto o DigitalnojDalmaciji"
     }
   ]
 }

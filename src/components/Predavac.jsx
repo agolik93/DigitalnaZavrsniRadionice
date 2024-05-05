@@ -1,43 +1,35 @@
-import axios from "axios";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { useStore } from "../store";
+import { useLica } from "../services/api/data";
 
-async function fetchData() {
-  const res = await axios.get("https://randomuser.me/api/?results=3");
-  return res.data.results;
-}
-
-const Predavac = ({ predavac, i }) => {
-  const { data } = useQuery("lica", fetchData, { staleTime: Infinity });
-
-  const odabraniPredavac = useStore((state) => state.odabraniPredavac);
-  const setOdabraniPredavac = useStore((state) => state.setOdabraniPredavac);
+const Predavac = ({ e, i, setUrediModal, setId }) => {
   const admin = useStore((state) => state.adminState);
 
+  const { data, isLoading } = useLica();
+
+  if (isLoading) return <div>Loading...</div>;
+
   function handleClick() {
-    setOdabraniPredavac(predavac.ime);
+    setUrediModal(true);
+    setId(e.id);
   }
 
   return (
     <>
       <div className="border-2">
         <img src={data && data[i]?.picture.large} alt="" />
-        <h2>{predavac?.ime}</h2>
-        <div>{predavac?.biografija}</div>
-        <div>Organizacija</div>
-        <div>Teme:</div>
+        <h2>{e?.ime}</h2>
+        <div>{e?.biografija}</div>
+        <div>{e?.organizacije}</div>
+        <ul>
+          {e?.tema?.map((e) => (
+            <li key={e.value}> {e.label}</li>
+          ))}
+        </ul>
       </div>
-      <button onClick={handleClick}>Pregledaj radionice</button>
-      {odabraniPredavac === predavac.ime && (
-        <>
-          <div>Da li ste sigurni:</div>
-          <Link to={odabraniPredavac}>Da</Link>
-          <button onClick={() => setOdabraniPredavac("")}>Ne</button>
-        </>
-      )}
+      <Link to={`/predavaci/${e?.ime}`}>Pregledaj radionice</Link>
 
-      {admin && <button>Uredi</button>}
+      {admin && <button onClick={handleClick}>Uredi</button>}
     </>
   );
 };

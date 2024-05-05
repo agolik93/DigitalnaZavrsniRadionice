@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useStore } from "../store";
-import Modal from "./Modal";
 
-const ModalPrijava = () => {
+import Modal from "./Modal";
+import { useRadionice } from "../../services/api/data";
+import { useState } from "react";
+
+const ModalPrijava = ({ handleOpen, selectedId, setSelectedId }) => {
   const {
     register,
     handleSubmit,
@@ -11,36 +13,32 @@ const ModalPrijava = () => {
     reset,
   } = useForm();
 
-  const izabraniForm = useStore((state) => state.izabraniForm);
+  const { data: radioniceData } = useRadionice();
+
+  const izabranaRadionica = radioniceData.find((e) => e.id === selectedId);
+  const [submittedData, setSubmittedData] = useState(null);
 
   const onSubmit = async (data) => {
-    const formData = {
-      ime_prezime: data.ime_prezime,
-      email: data.email,
-      razlog: data.razlog,
+    const updatedBrojPrijava = parseInt(izabranaRadionica.brojPrijava) + 1;
+
+    const updatedData = {
+      ...izabranaRadionica,
+      brojPrijava: updatedBrojPrijava,
     };
 
-    const response = await axios.get(
-      `http://localhost:3000/radionice/${izabraniForm.id}`
+    await axios.patch(
+      `http://localhost:3000/radionice/${selectedId}`,
+      updatedData
     );
-
-    const radioniceData = response.data;
-
-    radioniceData.polaznici = [...(radioniceData.polaznici || []), formData];
-
-    await axios.put(
-      `http://localhost:3000/radionice/${izabraniForm.id}`,
-      radioniceData
-    );
-
+    setSubmittedData(data);
     reset();
   };
 
   return (
-    <Modal>
+    <Modal handleOpen={handleOpen} setSelectedId={setSelectedId}>
       {!isSubmitSuccessful ? (
         <>
-          <div>Prijavi se na {izabraniForm.ime}</div>
+          <div>Prijavi se na {izabranaRadionica?.ime}</div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="border-2 flex flex-col "
@@ -88,7 +86,13 @@ const ModalPrijava = () => {
           </form>
         </>
       ) : (
-        <h1>Hvala na prijavi!</h1>
+        <>
+          <h1>Hvala na prijavi!</h1>
+          <div>
+            <p>Ime i prezime: {submittedData.ime_prezime}</p>
+            <p>Email adresa: {submittedData.email}</p>
+          </div>
+        </>
       )}
     </Modal>
   );
