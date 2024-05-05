@@ -23,7 +23,7 @@ const RadionicaPage = () => {
   return (
     <div className="flex flex-col">
       {admin && (
-        <div className="flex justify-end">
+        <div className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  focus:outline-none ">
           <button
             onClick={() => {
               setOpenModal(true);

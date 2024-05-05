@@ -89,6 +89,18 @@
           "label": "Next.js"
         }
       ]
+    },
+    {
+      "id": "800b",
+      "ime": "Ante Antic",
+      "biografija": "dsadsa",
+      "organizacije": "DigitalnaDalmacija",
+      "tema": [
+        {
+          "value": "8639",
+          "label": "Next.js"
+        }
+      ]
     }
   ],
   "tezine": [

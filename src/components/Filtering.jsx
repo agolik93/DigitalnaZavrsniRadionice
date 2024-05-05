@@ -15,7 +15,6 @@ const Filtering = ({
 }) => {
   const [data1Filter, setData1Filter] = useState(null);
   const [data2Filter, setData2Filter] = useState(null);
-
   const [loadingFilter, setLoadingFilter] = useState(false);
 
   const handleFilterChange = () => {
@@ -34,7 +33,7 @@ const Filtering = ({
 
   return (
     <>
-      <div className="w-1/5">
+      <div className="w-1/5 text-center">
         {izabraniId !== undefined && (
           <h2 className="text-xl font-bold mb-4">
             Radionice predavača {`${izabraniId}`}
@@ -68,7 +67,8 @@ const Filtering = ({
           </div>
         )}
       </div>
-      <div className="w-4/5 border-4 bg-blue-200 flex p-10 m-4">
+
+      <div className="w-4/5 border-4 gap-4 bg-blue-200 grid grid-cols-3 grid-rows-auto  p-10 m-4 h-full">
         {loadingFilter ? (
           <div className="p-4">Loading...</div>
         ) : (

@@ -8,7 +8,7 @@ const Layout = () => {
       <header className="bg-blue-900 text-white py-4  h-1/6">
         <Navigacija />
       </header>
-      <main className="bg-purple-200 py-8 flex-grow h-4/6 ">
+      <main className="bg-purple-200 py-8 flex-grow h-4/6 p-5">
         <Outlet />
       </main>
       <footer className="bg-blue-300 py-4 h-1/6">

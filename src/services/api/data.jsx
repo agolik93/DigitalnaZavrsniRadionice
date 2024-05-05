@@ -34,6 +34,10 @@ async function fetchLica() {
   );
   return res.data.results;
 }
+async function fetchRandomWorkshop() {
+  const response = await axios.get(`https://source.unsplash.com/random`);
+  return response.results;
+}
 
 export const useRadionice = () => {
   const { data, isLoading, refetch, isFetched } = useQuery(
@@ -69,5 +73,16 @@ export const useLica = () => {
   const { data, isLoading, refetch } = useQuery("lica", fetchLica, {
     staleTime: Infinity,
   });
+  return { data, isLoading, refetch };
+};
+
+export const useRandomWorkshop = () => {
+  const { data, isLoading, refetch } = useQuery(
+    "workshop",
+    fetchRandomWorkshop,
+    {
+      staleTime: Infinity,
+    }
+  );
   return { data, isLoading, refetch };
 };

@@ -16,17 +16,24 @@ const Predavac = ({ e, i, setUrediModal, setId }) => {
 
   return (
     <>
-      <div className="border-4 p-10 mx-5 flex  flex-col h-full">
+      <div className="border-4 p-10 mx-5 flex  flex-col p-5">
         <div className="flex-grow">
           <img
             className="w-32 h-32 object-cover rounded-full mb-2"
             src={data && data[i]?.picture.large}
             alt=""
           />
-          <h2 className="text-lg font-bold mb-1">Ime: {e?.ime}</h2>
-          <div className="mb-2">O predavacu:{e?.biografija}</div>
-          <div className="mb-2">Organizacija:{e?.organizacije}</div>
+          <h2 className="text-xl font-bold mb-1">Ime: {e?.ime}</h2>
+          <div className="mb-2">
+            <span className="font-bold">O predavacu:</span>
+            {e?.biografija}
+          </div>
+          <div className="mb-2">
+            <span className="font-bold">Organizacija:</span>
+            {e?.organizacije}
+          </div>
           <ul className="mb-2">
+            <span className="font-bold">Teme:</span>
             {e?.tema?.map((e) => (
               <li key={e.value}>{e.label}</li>
             ))}
