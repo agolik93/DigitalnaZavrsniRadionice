@@ -1,11 +1,7 @@
-import { Link } from "react-router-dom";
-
 const Pocetna = () => {
   return (
     <div className="max-w-lg mx-auto mt-10 p-5">
-      <h1 className="text-3xl font-bold mb-5">
-        Dobrodošli na našu aplikaciju!
-      </h1>
+      <h1 className="text-3xl font-bold mb-5">Dobrodošli na aplikaciju!</h1>
       <p className="text-lg mb-5">
         Ova aplikacija omogućuje vam pristup različitim radionicama,
         informacijama o predavačima, organizacijama i temama.

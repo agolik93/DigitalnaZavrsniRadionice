@@ -54,7 +54,12 @@ const ModalRadionica = ({ handleOpen, selectedId, setSelectedId }) => {
     <Modal handleOpen={handleOpen} setSelectedId={setSelectedId}>
       {!isSubmitSuccessful && predavaciData ? (
         <>
-          {edit && <h2>Uredi radionicu {`${izabranaData?.ime}`} </h2>}
+          {edit && (
+            <h2 className="text-xl text-center ">
+              Uredi radionicu{" "}
+              <span className="font-bold">{`${izabranaData?.ime}`}</span>
+            </h2>
+          )}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="border-2 flex flex-col gap-3"
